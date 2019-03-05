@@ -21,15 +21,15 @@ public class Model {
     int yIncrChange = yIncr;
     
     
-    public int getX() {
+    public int getX() { //Getter for X
     	return this.xloc;
     }
     
-    public int getY() {
+    public int getY() { //Getter for Y
     	return this.yloc;
     }
     
-    public String getDirect() {
+    public String getDirect() { //Gets the direction String
     	return this.d.getName();
     }
     
@@ -63,13 +63,13 @@ public class Model {
     
     
     
-    public void updateLoc() {
+    public void updateLoc() { //Updates location using the xIncreChange variable.
     	this.xloc = xloc + xIncrChange;
     	this.yloc = yloc + yIncrChange;
     }
     
     
-    public void updateLocationAndDirection() {
+    public void updateLocationAndDirection() { //Calls changeDirection and updateLoc
     	this.changeDirection();
     	this.updateLoc();
     }
