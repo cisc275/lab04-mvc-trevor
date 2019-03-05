@@ -25,7 +25,7 @@ public class Model {
 	int Width;
 	int Height;
 	
-	Model(int Width, int Height, int imageWidth, int imageHeight){
+	public Model(int Width, int Height, int imageWidth, int imageHeight){
 		this.Width = Width;
 		this.Height = Height;
 		this.imageWidth = imageWidth;
@@ -47,10 +47,10 @@ public class Model {
     
     public void changeDirection() { //This is the collision detection. Changes direction based on if statements.
     	
-    	if(xloc < 0 || xloc >= View.frameWidth-View.imgWidth) {
+    	if(xloc < 0 || xloc >= Width - imageWidth) {
     		xIncrChange *= -1;
     	}
-    	if(yloc < 0 || yloc >= View.frameHeight-View.imgHeight) {
+    	if(yloc < 0 || yloc >= Height - imageHeight) {
     		yIncrChange *= -1;
     	}
     	

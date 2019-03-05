@@ -29,6 +29,11 @@ public class View extends JPanel {
 	int frame = 0;
 	int picNum = 0;
     
+	final static String[] orcImages = {"images/orc/orc_forward_southeast.png", "images/orc/orc_forward_northwest.png", 
+										"images/orc/orc_forward_southwest.png", "images/orc/orc_forward_northeast.png",
+										"images/orc/orc_forward_east.png","images/orc/orc_forward_south.png", "images/orc/orc_forward_north.png",
+										"images/orc/orc_forward_west.png"};
+	
 	
 	public int getWidth(){
 		return this.frameWidth;
@@ -48,5 +53,17 @@ public class View extends JPanel {
 	
 	
     
+	private BufferedImage createImage(String aFile){
+    	BufferedImage bufferedImage;
+    	try {
+    		bufferedImage = ImageIO.read(new File(aFile));
+    		return bufferedImage;
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
+    	return null;
+	}
+	
+	
     
 }
