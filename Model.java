@@ -20,7 +20,19 @@ public class Model {
     int xIncrChange = xIncr;
     int yIncrChange = yIncr;
     
-    
+    int imageWidth;
+	int imageHeight;
+	int Width;
+	int Height;
+	
+	Model(int Width, int Height, int imageWidth, int imageHeight){
+		this.Width = Width;
+		this.Height = Height;
+		this.imageWidth = imageWidth;
+		this.imageHeight = imageHeight;
+	}
+	
+	
     public int getX() { //Getter for X
     	return this.xloc;
     }
