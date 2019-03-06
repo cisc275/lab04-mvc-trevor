@@ -79,9 +79,7 @@ public class View extends JPanel {
 		return this.imgHeight;
 	}
 	
-	public void update(int x, int y, String dir){
-		
-		g.drawImage(pics[picNum][frameNum], x, y, Color.gray, this);
+	public void update(int x, int y, String dir){ //Problem is somehwere related to this guy I think
 		
 		this.xLoc = x;
 		this.yLoc = y;
