@@ -76,13 +76,13 @@ public class Model {
     
     
     public void updateLoc() { //Updates location using the xIncreChange variable.
-    	this.xloc = xloc + xIncrChange;
-    	this.yloc = yloc + yIncrChange;
+    	this.xloc += xIncrChange;
+    	this.yloc += yIncrChange;
     }
     
     
     public void updateLocationAndDirection() { //Calls changeDirection and updateLoc
-    	this.changeDirection();
-    	this.updateLoc();
+    	changeDirection();
+    	updateLoc();
     }
 }

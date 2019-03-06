@@ -26,13 +26,41 @@ public class View extends JPanel {
     final static int imgHeight = 165;
 	final int frameCount = 10;
 	
-	int frame = 0;
+	JFrame frame;
+	int frameNum =0;
 	int picNum = 0;
-    
+	BufferedImage[][] pics;
+    int xLoc=0;
+	int yLoc=0;
+	
 	final static String[] orcImages = {"images/orc/orc_forward_southeast.png", "images/orc/orc_forward_northwest.png", 
 										"images/orc/orc_forward_southwest.png", "images/orc/orc_forward_northeast.png",
 										"images/orc/orc_forward_east.png","images/orc/orc_forward_south.png", "images/orc/orc_forward_north.png",
 										"images/orc/orc_forward_west.png"};
+	int southeast = 0;
+	int northwest = 1;
+	int southwest = 2;
+	int northeast = 3;
+	
+	
+	public View(){
+		pics = new BufferedImage[8][10];
+    	for(int i = 0; i < orcImages.length; i++) {
+    		BufferedImage img = createImage(orcImages[i]);
+    			for(int j = 0; j < frameCount; j++) {
+    				pics[i][j] = img.getSubimage(imgWidth*j, 0, imgWidth, imgHeight);
+    		}
+    	}
+		
+		frame = new JFrame();
+		frame.getContentPane().add(this);
+		frame.setBackground(Color.gray);
+    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	frame.setSize(frameWidth, frameHeight);
+    	frame.setVisible(true);
+	}
+	
+	
 	
 	
 	public int getWidth(){
@@ -51,8 +79,37 @@ public class View extends JPanel {
 		return this.imgHeight;
 	}
 	
+	public void update(int x, int y, String dir){
+		
+		g.drawImage(pics[picNum][frameNum], x, y, Color.gray, this);
+		
+		this.xLoc = x;
+		this.yLoc = y;
+		
+		if (dir.equals(Direction.SOUTHEAST)){
+			picNum = southeast;
+		}
+		if (dir.equals(Direction.SOUTHWEST)){
+			picNum = southwest;
+		}
+		if (dir.equals(Direction.NORTHEAST)){
+			picNum = northeast;
+		}
+		if (dir.equals(Direction.NORTHWEST)){
+			picNum = northwest;
+		}
+		
+		frameNum = (frameNum + 1) % frameCount;
+		g.drawImage(pics[picNum][frameNum], x, y, Color.gray, this);
+		
+	}
 	
+	public void paint(Graphics g) {
+		frameNum= (frameNum + 1) % frameCount;
+		g.drawImage(pics[picNum][frameNum], xLoc, yLoc, Color.gray, this);
     
+	}
+	
 	private BufferedImage createImage(String aFile){
     	BufferedImage bufferedImage;
     	try {
@@ -63,6 +120,9 @@ public class View extends JPanel {
     	}
     	return null;
 	}
+	
+	
+	
 	
 	
     
