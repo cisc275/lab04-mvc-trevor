@@ -92,8 +92,6 @@ public class View extends JPanel {
 		}
 		
 		frame.getContentPane().add(this);
-		frameNum = (frameNum+1) % frameCount;
-		System.out.println(Integer.toString(picNum) + " " + Integer.toString(frameNum));
 		frame.repaint();
 
 	}
