@@ -84,5 +84,6 @@ public class Model {
     public void updateLocationAndDirection() { //Calls changeDirection and updateLoc
     	changeDirection();
     	updateLoc();
+		//System.out.println(Integer.toString(this.xloc ) + " " + Integer.toString(this.yloc));
     }
 }

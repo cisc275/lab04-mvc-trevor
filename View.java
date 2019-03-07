@@ -44,16 +44,10 @@ public class View extends JPanel {
 	
 	
 	public View(){
-		pics = new BufferedImage[8][10];
-    	for(int i = 0; i < orcImages.length; i++) {
-    		BufferedImage img = createImage(orcImages[i]);
-    			for(int j = 0; j < frameCount; j++) {
-    				pics[i][j] = img.getSubimage(imgWidth*j, 0, imgWidth, imgHeight);
-    		}
-    	}
 		
+		this.setPics();
 		frame = new JFrame();
-		frame.getContentPane().add(this);
+		//frame.getContentPane().add(this);
 		frame.setBackground(Color.gray);
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	frame.setSize(frameWidth, frameHeight);
@@ -84,23 +78,26 @@ public class View extends JPanel {
 		this.xLoc = x;
 		this.yLoc = y;
 		
-		if (dir.equals(Direction.SOUTHEAST)){
+		if (dir.equals(Direction.SOUTHEAST.getName())){
 			picNum = southeast;
 		}
-		if (dir.equals(Direction.SOUTHWEST)){
+		if (dir.equals(Direction.SOUTHWEST.getName())){
 			picNum = southwest;
 		}
-		if (dir.equals(Direction.NORTHEAST)){
+		if (dir.equals(Direction.NORTHEAST.getName())){
 			picNum = northeast;
 		}
-		if (dir.equals(Direction.NORTHWEST)){
+		if (dir.equals(Direction.NORTHWEST.getName())){
 			picNum = northwest;
 		}
 		
-		frameNum = (frameNum + 1) % frameCount;
-		g.drawImage(pics[picNum][frameNum], x, y, Color.gray, this);
-		
+		frame.getContentPane().add(this);
+		frameNum = (frameNum+1) % frameCount;
+		System.out.println(Integer.toString(picNum) + " " + Integer.toString(frameNum));
+		frame.repaint();
+
 	}
+	
 	
 	public void paint(Graphics g) {
 		frameNum= (frameNum + 1) % frameCount;
@@ -117,6 +114,17 @@ public class View extends JPanel {
     		e.printStackTrace();
     	}
     	return null;
+	}
+	
+	
+	private void setPics(){
+	pics = new BufferedImage[8][10];
+    	for(int i = 0; i < orcImages.length; i++) {
+    		BufferedImage img = createImage(orcImages[i]);
+    			for(int j = 0; j < frameCount; j++) {
+    				pics[i][j] = img.getSubimage(imgWidth*j, 0, imgWidth, imgHeight);
+    		}
+    	}
 	}
 	
 	
